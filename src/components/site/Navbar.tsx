@@ -1,29 +1,41 @@
-import { Menu, X, Zap } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Logo } from "./Logo";
 
-const links = ["Home", "Services", "Our Work", "About Us", "Blog", "Contact"];
+const links = [
+  { label: "Home", to: "/" },
+  { label: "Services", to: "/services" },
+  { label: "Our Work", to: "/our-work" },
+  { label: "About Us", to: "/about" },
+  { label: "Blog", to: "/blog" },
+  { label: "Contact", to: "/contact" },
+];
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border/60">
       <div className="container flex items-center justify-between h-20">
-        <a href="#" className="flex items-center gap-2 font-display font-extrabold text-xl">
-          <span className="grid place-items-center w-9 h-9 rounded-xl gradient-accent text-accent-foreground">
-            <Zap className="w-5 h-5" strokeWidth={2.5} />
-          </span>
-          Brightline<span className="text-brand">.</span>
-        </a>
-        <nav className="hidden lg:flex items-center gap-9 text-sm font-medium text-muted-foreground">
+        <Logo />
+        <nav className="hidden lg:flex items-center gap-9 text-sm font-semibold">
           {links.map((l) => (
-            <a key={l} href="#" className="hover:text-foreground transition-colors">{l}</a>
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.to === "/"}
+              className={({ isActive }) =>
+                `relative pb-1 transition-colors ${isActive ? "text-foreground after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-0.5 after:bg-brand after:rounded-full" : "text-muted-foreground hover:text-foreground"}`
+              }
+            >
+              {l.label}
+            </NavLink>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href="#" className="hidden sm:inline-flex items-center gap-2 bg-accent-y text-accent-foreground font-semibold px-5 py-3 rounded-full hover:shadow-float hover:-translate-y-0.5 transition-all">
-            Free Consultation
-            <span className="w-2 h-2 rounded-full bg-foreground/80" />
-          </a>
+          <Link to="/contact" className="hidden sm:inline-flex items-center gap-2 bg-accent text-accent-foreground font-semibold px-5 py-3 rounded-2xl hover:shadow-float hover:-translate-y-0.5 transition-all">
+            Free Consultation <ArrowRight className="w-4 h-4" />
+          </Link>
           <button className="lg:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X /> : <Menu />}
           </button>
@@ -31,8 +43,13 @@ export const Navbar = () => {
       </div>
       {open && (
         <div className="lg:hidden border-t border-border bg-background">
-          <div className="container py-4 flex flex-col gap-3">
-            {links.map((l) => <a key={l} href="#" className="py-2">{l}</a>)}
+          <div className="container py-4 flex flex-col gap-2">
+            {links.map((l) => (
+              <NavLink key={l.to} to={l.to} end={l.to === "/"} onClick={() => setOpen(false)}
+                className={({ isActive }) => `py-2 font-semibold ${isActive ? "text-brand" : "text-foreground"}`}>
+                {l.label}
+              </NavLink>
+            ))}
           </div>
         </div>
       )}
