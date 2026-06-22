@@ -41,7 +41,7 @@ export const Footer = () => (
         <h4 className="font-display font-bold mb-5">Contact Info</h4>
         <ul className="space-y-3 text-background/70 text-sm">
           <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-accent" /> +91 98765 43210</li>
-          <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-accent" /> hello@digidesi.in</li>
+          <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-accent" /> hello@websbond.com</li>
           <li className="flex items-center gap-2"><MapPin className="w-4 h-4 text-accent" /> Indore, MP, India</li>
           <li className="flex items-center gap-2"><span className="w-4 h-4 grid place-items-center text-accent">●</span> Mon - Sat: 10AM - 9PM</li>
         </ul>
@@ -62,7 +62,7 @@ export const Footer = () => (
 
     <div className="border-t border-background/10">
       <div className="container py-5 flex flex-col sm:flex-row justify-between gap-3 text-xs text-background/60">
-        <span>© 2024 DigiDesi. All rights reserved.</span>
+        <span>© 2024 Websbond. All rights reserved.</span>
         <div className="flex gap-6">
           <a href="#" className="hover:text-accent">Privacy Policy</a>
           <a href="#" className="hover:text-accent">Terms & Conditions</a>
