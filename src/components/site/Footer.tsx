@@ -6,8 +6,8 @@ export const Footer = () => (
   <footer className="bg-[hsl(214_55%_8%)] text-background mt-12">
     <div className="container py-16 grid lg:grid-cols-12 gap-10">
       <div className="lg:col-span-3">
-        <Logo light />
-        <p className="mt-5 text-background/70 max-w-xs leading-relaxed">
+        <Logo light size="lg" />
+        <p className="mt-6 text-background/70 max-w-xs leading-relaxed">
           India ki digital agency for<br />small businesses.
         </p>
         <div className="flex gap-3 mt-6">

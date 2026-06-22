@@ -16,8 +16,8 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border/60">
-      <div className="container flex items-center justify-between h-20">
-        <Logo />
+      <div className="container flex items-center justify-between gap-4 h-16 sm:h-20 lg:h-24">
+        <Logo size="md" />
         <nav className="hidden lg:flex items-center gap-9 text-sm font-semibold">
           {links.map((l) => (
             <NavLink
