@@ -1,4 +1,5 @@
 import { Sparkles, Phone, Mail, MessageCircle, MapPin, Send, Shield, Clock, Users, CheckCircle2 } from "lucide-react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { toast } from "@/hooks/use-toast";
@@ -17,6 +18,7 @@ const ContactPage = () => {
   };
   return (
     <Layout>
+      <SEO title="Contact Websbond — Free Consultation, Call or WhatsApp" description="Get in touch with Websbond — call, WhatsApp or email our Indore team. Free consultation for websites, SEO and digital marketing in India." path="/contact" />
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>

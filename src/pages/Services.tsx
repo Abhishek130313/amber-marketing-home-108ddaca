@@ -1,6 +1,7 @@
 import { ArrowRight, Play, Check, Globe, Search, Megaphone, Palette, Headphones, Share2, Briefcase, Users, Trophy, ChevronDown, Rocket, TrendingUp, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import laptop from "@/assets/laptop.png";
@@ -42,9 +43,30 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
   );
 };
 
+const servicesJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  },
+  ...services.map((s) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: s.title,
+    description: s.desc,
+    provider: { "@type": "Organization", name: "Websbond" },
+    areaServed: "IN",
+  })),
+];
+
 const ServicesPage = () => (
   <Layout>
-    {/* Hero */}
+    <SEO title="Services — Websites, SEO, Digital Marketing & Support | Websbond" description="Explore Websbond services: website development, SEO, paid ads, brand identity, social media management and 24/7 human support — transparent pricing from ₹7,999." path="/services" jsonLd={servicesJsonLd} />
+      {/* Hero */}
     <section className="relative overflow-hidden">
       <div className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>
@@ -75,7 +97,7 @@ const ServicesPage = () => (
         </div>
         <div className="relative h-[420px] lg:h-[500px]">
           <div className="absolute inset-6 rounded-3xl gradient-warm" />
-          <img src={laptop} alt="Laptop" className="relative z-10 w-full h-full object-contain" />
+          <img src={laptop} alt="Laptop showcasing Websbond services dashboard" className="relative z-10 w-full h-full object-contain" />
           {[
             { icon: Briefcase, val: "20+", label: "Services to grow your business online", cls: "top-4 right-0" },
             { icon: Users, val: "50+", label: "Businesses trust us", cls: "top-1/2 -right-2" },
@@ -113,7 +135,7 @@ const ServicesPage = () => (
               ))}
             </ul>
             <button className="inline-flex items-center gap-1.5 border border-border px-4 py-2 rounded-xl text-sm font-semibold hover:bg-accent hover:text-accent-foreground hover:border-accent transition">
-              Learn More <ArrowRight className="w-3.5 h-3.5" />
+              Learn more about this service <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </article>
         ))}

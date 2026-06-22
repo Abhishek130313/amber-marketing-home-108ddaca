@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles, CheckCircle2, Users, Trophy, Rocket, Smile, Coins, Clock, TrendingUp, Monitor, ShoppingBag, Search, Megaphone, Palette, Layers, ChevronLeft, ChevronRight, ChevronDown, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import laptop from "@/assets/laptop.png";
@@ -36,6 +37,7 @@ const OurWorkPage = () => {
   const [active, setActive] = useState("All Projects");
   return (
     <Layout>
+      <SEO title="Our Work — Websbond Case Studies & Client Projects" description="See websites, SEO campaigns and digital marketing projects Websbond has delivered for small businesses across India. Real results, real clients." path="/our-work" />
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>
@@ -60,7 +62,7 @@ const OurWorkPage = () => {
         </div>
         <div className="relative h-[420px] lg:h-[500px]">
           <div className="absolute inset-6 rounded-3xl gradient-warm" />
-          <img src={laptop} alt="Showcase" className="relative z-10 w-full h-full object-contain" />
+          <img src={laptop} alt="Laptop showcasing Websbond client project" className="relative z-10 w-full h-full object-contain" />
           <div className="absolute top-8 -right-2 bg-card rounded-2xl shadow-card p-5 w-60 z-20">
             <div className="flex items-center gap-2 mb-2"><Leaf className="w-4 h-4 text-accent" /><span className="font-bold text-sm">AuraSkin</span></div>
             <div className="text-xs font-semibold text-muted-foreground mb-2">eCommerce Website</div>
