@@ -18,7 +18,7 @@ export const Navbar = () => {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border/60">
       <div className="container flex items-center justify-between gap-4 h-16 sm:h-20 lg:h-24">
         <Logo size="md" />
-        <nav className="hidden lg:flex items-center gap-9 text-sm font-semibold">
+        <nav className="hidden lg:flex items-center gap-9 text-base xl:text-lg font-bold">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -46,7 +46,7 @@ export const Navbar = () => {
           <div className="container py-4 flex flex-col gap-2">
             {links.map((l) => (
               <NavLink key={l.to} to={l.to} end={l.to === "/"} onClick={() => setOpen(false)}
-                className={({ isActive }) => `py-2 font-semibold ${isActive ? "text-brand" : "text-foreground"}`}>
+                className={({ isActive }) => `py-2 text-lg font-bold ${isActive ? "text-brand" : "text-foreground"}`}>
                 {l.label}
               </NavLink>
             ))}
