@@ -1,5 +1,6 @@
 import { ArrowRight, Search, Pencil, Code2, BarChart3, Megaphone, TrendingUp, Wrench, Clock, ChevronLeft, ChevronRight, Send } from "lucide-react";
 import { useState } from "react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import b1 from "@/assets/blog1.jpg";
@@ -42,6 +43,7 @@ const BlogPage = () => {
   const [active, setActive] = useState("All Posts");
   return (
     <Layout>
+      <SEO title="Blog — Digital Marketing & SEO Tips for Indian Small Businesses" description="Practical guides on websites, SEO, social media and digital growth for small businesses in India — written by the Websbond team." path="/blog" />
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>

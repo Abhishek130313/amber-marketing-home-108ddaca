@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles, CheckCircle2, Users, Trophy, Rocket, Smile, Coins, Clock, TrendingUp, Monitor, ShoppingBag, Search, Megaphone, Palette, Layers, ChevronLeft, ChevronRight, ChevronDown, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import laptop from "@/assets/laptop.png";
@@ -36,6 +37,7 @@ const OurWorkPage = () => {
   const [active, setActive] = useState("All Projects");
   return (
     <Layout>
+      <SEO title="Our Work — Websbond Case Studies & Client Projects" description="See websites, SEO campaigns and digital marketing projects Websbond has delivered for small businesses across India. Real results, real clients." path="/our-work" />
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>

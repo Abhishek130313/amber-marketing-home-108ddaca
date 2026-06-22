@@ -1,4 +1,5 @@
 import { Sparkles, Target, Eye, Heart, CheckCircle2, Users, Trophy, Smile, Star } from "lucide-react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import laptop from "@/assets/laptop.png";
@@ -22,7 +23,8 @@ const process = [
 
 const AboutPage = () => (
   <Layout>
-    {/* Hero */}
+    <SEO title="About Websbond — India's Digital Agency for Small Businesses" description="Websbond is an Indore-based digital agency helping small businesses grow online with affordable websites, SEO and real human support." path="/about" />
+      {/* Hero */}
     <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
       <div>
         <div className="inline-flex items-center gap-2 bg-accent/15 text-foreground font-semibold text-xs uppercase tracking-wider px-4 py-2 rounded-full">

@@ -1,6 +1,7 @@
 import { ArrowRight, Play, Check, Globe, Search, Megaphone, Palette, Headphones, Share2, Briefcase, Users, Trophy, ChevronDown, Rocket, TrendingUp, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import laptop from "@/assets/laptop.png";
@@ -44,7 +45,8 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
 
 const ServicesPage = () => (
   <Layout>
-    {/* Hero */}
+    <SEO title="Services — Websites, SEO, Digital Marketing & Support | Websbond" description="Explore Websbond services: website development, SEO, paid ads, brand identity, social media management and 24/7 human support — transparent pricing from ₹7,999." path="/services" jsonLd={servicesJsonLd} />
+      {/* Hero */}
     <section className="relative overflow-hidden">
       <div className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>
