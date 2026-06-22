@@ -32,12 +32,12 @@ const AboutPage = () => (
           India ki <span className="text-accent">digital agency</span> for small businesses.
         </h1>
         <p className="mt-5 text-lg text-muted-foreground max-w-lg">
-          DigiDesi me hum small businesses ke liye affordable, premium quality digital solutions banate hain. Real human support ke saath.
+          Websbond me hum small businesses ke liye affordable, premium quality digital solutions banate hain. Real human support ke saath.
         </p>
       </div>
       <div className="relative h-[360px] lg:h-[440px]">
         <div className="absolute inset-6 rounded-3xl gradient-warm" />
-        <img src={laptop} alt="DigiDesi team" className="relative z-10 w-full h-full object-contain" />
+        <img src={laptop} alt="Websbond team" className="relative z-10 w-full h-full object-contain" />
       </div>
     </section>
 
@@ -115,7 +115,7 @@ const AboutPage = () => (
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {[
-          { name: "Rohit Verma", role: "Hotel Owner, Kanpur", img: a1, text: "DigiDesi ne hamare hotel ki online presence badal di. Bookings 3x ho gayi!" },
+          { name: "Rohit Verma", role: "Hotel Owner, Kanpur", img: a1, text: "Websbond ne hamare hotel ki online presence badal di. Bookings 3x ho gayi!" },
           { name: "Neha Sharma", role: "Salon Owner, Lucknow", img: a2, text: "Professional team aur 24/7 support. Highly recommended!" },
           { name: "Amit Patel", role: "Kirana Store, Indore", img: a3, text: "Website itni achhi banayi ki customers khud message karne lage." },
         ].map((r) => (

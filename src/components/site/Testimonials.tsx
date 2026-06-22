@@ -4,7 +4,7 @@ import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
 
 const reviews = [
-  { name: "Rohit Verma", role: "Hotel Owner, Kanpur", img: a1, text: "DigiDesi ne hamare hotel ki online presence badal di. Bookings 3x ho gayi!" },
+  { name: "Rohit Verma", role: "Hotel Owner, Kanpur", img: a1, text: "Websbond ne hamare hotel ki online presence badal di. Bookings 3x ho gayi!" },
   { name: "Neha Sharma", role: "Salon Owner, Lucknow", img: a2, text: "Professional team aur 24/7 support. Highly recommended!" },
   { name: "Amit Patel", role: "Kirana Store, Indore", img: a3, text: "Website itni achhi banayi ki customers khud message karne lage. Amazing!" },
   { name: "Vikram Singh", role: "Gym Owner, Jaipur", img: a1, text: "Unka digital marketing kaam karta hai. Har mahine new customers mil rahe hain." },
