@@ -54,7 +54,7 @@ export const Hero = () => {
           <div className="mt-8 flex items-center gap-5">
             <div className="flex -space-x-3">
               {[a1, a2, a3, a1].map((src, i) => (
-                <img key={i} src={src} alt="Client" className="w-11 h-11 rounded-full ring-4 ring-background object-cover" />
+                <img key={i} src={src} alt={`Happy Websbond client ${i + 1} avatar`} className="w-11 h-11 rounded-full ring-4 ring-background object-cover" />
               ))}
               <div className="w-11 h-11 rounded-full ring-4 ring-background bg-accent text-accent-foreground grid place-items-center text-xs font-bold">50+</div>
             </div>
@@ -64,7 +64,7 @@ export const Hero = () => {
 
         <div className="relative h-[480px] lg:h-[560px]">
           <div className="absolute inset-6 rounded-3xl gradient-warm" />
-          <img src={laptop} alt="Laptop showcasing dashboard" width={1024} height={768}
+          <img src={laptop} alt="Laptop showcasing Websbond client business dashboard" width={1024} height={768} fetchPriority="high" decoding="async"
                className="relative z-10 w-full h-full object-contain drop-shadow-2xl" />
 
           <FloatingCard icon={Globe} title="Website Development" subtitle="Modern & Fast"

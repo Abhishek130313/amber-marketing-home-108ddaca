@@ -51,7 +51,7 @@ export const Footer = () => (
         <h4 className="font-display font-bold mb-5">Newsletter</h4>
         <p className="text-background/70 text-sm mb-4">Digital tips, offers aur updates seedhe aapke inbox me.</p>
         <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-          <input type="email" placeholder="Enter your email"
+          <input type="email" aria-label="Newsletter email address" placeholder="Enter your email"
                  className="w-full bg-background/10 border border-background/10 rounded-xl px-4 py-3 text-sm outline-none placeholder:text-background/50 focus:border-accent" />
           <button className="w-full bg-accent text-accent-foreground font-semibold py-3 rounded-xl hover:opacity-90 transition">
             Subscribe

@@ -75,7 +75,7 @@ const ServicesPage = () => (
         </div>
         <div className="relative h-[420px] lg:h-[500px]">
           <div className="absolute inset-6 rounded-3xl gradient-warm" />
-          <img src={laptop} alt="Laptop" className="relative z-10 w-full h-full object-contain" />
+          <img src={laptop} alt="Laptop showcasing Websbond services dashboard" className="relative z-10 w-full h-full object-contain" />
           {[
             { icon: Briefcase, val: "20+", label: "Services to grow your business online", cls: "top-4 right-0" },
             { icon: Users, val: "50+", label: "Businesses trust us", cls: "top-1/2 -right-2" },
@@ -113,7 +113,7 @@ const ServicesPage = () => (
               ))}
             </ul>
             <button className="inline-flex items-center gap-1.5 border border-border px-4 py-2 rounded-xl text-sm font-semibold hover:bg-accent hover:text-accent-foreground hover:border-accent transition">
-              Learn More <ArrowRight className="w-3.5 h-3.5" />
+              Learn more about this service <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </article>
         ))}

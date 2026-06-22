@@ -60,7 +60,7 @@ const OurWorkPage = () => {
         </div>
         <div className="relative h-[420px] lg:h-[500px]">
           <div className="absolute inset-6 rounded-3xl gradient-warm" />
-          <img src={laptop} alt="Showcase" className="relative z-10 w-full h-full object-contain" />
+          <img src={laptop} alt="Laptop showcasing Websbond client project" className="relative z-10 w-full h-full object-contain" />
           <div className="absolute top-8 -right-2 bg-card rounded-2xl shadow-card p-5 w-60 z-20">
             <div className="flex items-center gap-2 mb-2"><Leaf className="w-4 h-4 text-accent" /><span className="font-bold text-sm">AuraSkin</span></div>
             <div className="text-xs font-semibold text-muted-foreground mb-2">eCommerce Website</div>

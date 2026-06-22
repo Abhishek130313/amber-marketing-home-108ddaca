@@ -57,7 +57,7 @@ const BlogPage = () => {
         </div>
         <div className="relative h-[320px] lg:h-[400px]">
           <div className="absolute inset-6 rounded-3xl gradient-warm" />
-          <img src={laptop} alt="Blog laptop" className="relative z-10 w-full h-full object-contain" />
+          <img src={laptop} alt="Laptop displaying Websbond blog articles" className="relative z-10 w-full h-full object-contain" />
         </div>
       </section>
 
@@ -132,7 +132,7 @@ const BlogPage = () => {
         <aside className="space-y-6">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input type="text" placeholder="Search articles..."
+            <input type="text" aria-label="Search blog articles" placeholder="Search articles..."
                    className="w-full bg-card border border-border rounded-2xl pl-11 pr-4 py-3 text-sm outline-none focus:border-accent" />
           </div>
 
@@ -155,7 +155,7 @@ const BlogPage = () => {
             <div className="flex items-center gap-2 mb-3 text-accent"><Send className="w-4 h-4" /><span className="font-display font-bold">Stay Updated</span></div>
             <p className="text-sm text-background/70 mb-4">Digital tips, trends aur strategies seedhe aapke inbox mein.</p>
             <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Enter your email" className="w-full bg-background/10 border border-background/10 rounded-xl px-4 py-2.5 text-sm outline-none placeholder:text-background/50" />
+              <input type="email" aria-label="Newsletter email address" placeholder="Enter your email" className="w-full bg-background/10 border border-background/10 rounded-xl px-4 py-2.5 text-sm outline-none placeholder:text-background/50" />
               <button className="w-full bg-accent text-accent-foreground font-semibold py-2.5 rounded-xl">Subscribe</button>
             </form>
             <p className="text-[10px] text-background/50 mt-2">No spam. Unsubscribe anytime.</p>
