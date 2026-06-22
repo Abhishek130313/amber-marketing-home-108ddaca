@@ -43,6 +43,26 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
   );
 };
 
+const servicesJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  },
+  ...services.map((s) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: s.title,
+    description: s.desc,
+    provider: { "@type": "Organization", name: "Websbond" },
+    areaServed: "IN",
+  })),
+];
+
 const ServicesPage = () => (
   <Layout>
     <SEO title="Services — Websites, SEO, Digital Marketing & Support | Websbond" description="Explore Websbond services: website development, SEO, paid ads, brand identity, social media management and 24/7 human support — transparent pricing from ₹7,999." path="/services" jsonLd={servicesJsonLd} />
