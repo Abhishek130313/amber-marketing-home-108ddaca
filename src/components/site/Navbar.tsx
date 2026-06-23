@@ -15,7 +15,11 @@ const links = [
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/40 shadow-[0_1px_0_0_hsl(var(--accent)/0.15)]">
+    <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_30px_-10px_rgba(255,106,0,0.25)] relative overflow-hidden">
+      {/* Animated colorful gradient background */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,#fff7ed,#fef3c7,#ffe4e6,#ede9fe,#dbeafe,#d1fae5,#fff7ed)] bg-[length:300%_300%] animate-[shimmer_15s_ease_infinite] opacity-90" />
+      <div className="absolute inset-0 -z-10 bg-background/40 backdrop-blur-xl" />
+
       {/* Animated rainbow strip on top */}
       <div className="h-[3px] w-full bg-[linear-gradient(90deg,#ff6a00,#ffb300,#ff3d7f,#a855f7,#3b82f6,#10b981,#ff6a00)] bg-[length:300%_100%] animate-[shimmer_6s_linear_infinite]" />
 
