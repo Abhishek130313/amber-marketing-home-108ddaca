@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://amber-marketing-home.lovable.app/sitemap.xml
+Disallow: /404
+
+Sitemap: https://websbond.com/sitemap.xml

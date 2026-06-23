@@ -4,6 +4,7 @@ import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { toast } from "@/hooks/use-toast";
+import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 
 const contactCards = [
   { icon: Phone, title: "Call Us", value: "+91 98765 43210", sub: "Mon - Sat: 10AM - 9PM", color: "bg-accent/15 text-brand" },
@@ -12,15 +13,24 @@ const contactCards = [
   { icon: MapPin, title: "Visit Us", value: "Indore, Madhya Pradesh", sub: "India - 452001", color: "bg-purple-100 text-purple-600" },
 ];
 
-type FormState = {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-};
-
+type FormState = { name: string; email: string; phone: string; subject: string; message: string };
 const empty: FormState = { name: "", email: "", phone: "", subject: "", message: "" };
+
+const contactJsonLd = [
+  organizationSchema,
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Websbond — Free Website & Digital Marketing Consultation",
+    url: "https://websbond.com/contact",
+    description: "Contact Websbond for a free consultation on website design, SEO or digital marketing for your small business in India.",
+    mainEntity: { "@id": "https://websbond.com/#organization" },
+  },
+];
 
 const ContactPage = () => {
   const [form, setForm] = useState<FormState>(empty);
@@ -44,7 +54,12 @@ const ContactPage = () => {
 
   return (
     <Layout>
-      <SEO title="Contact Websbond — Free Consultation, Call or WhatsApp" description="Get in touch with Websbond — call, WhatsApp or email our Indore team. Free consultation for websites, SEO and digital marketing in India." path="/contact" />
+      <SEO
+        title="Contact Websbond — Free Website Design & Digital Marketing Consultation | Indore"
+        description="Call, WhatsApp or email Websbond for a free consultation on website design, SEO and digital marketing for your small business. Based in Indore, India. Same-day response."
+        path="/contact"
+        jsonLd={contactJsonLd}
+      />
 
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
@@ -115,67 +130,27 @@ const ContactPage = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="contact-name" className="sr-only">Your Name</label>
-                  <input
-                    id="contact-name"
-                    required
-                    placeholder="Your Name *"
-                    value={form.name}
-                    onChange={set("name")}
-                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
-                  />
+                  <input id="contact-name" required placeholder="Your Name *" value={form.name} onChange={set("name")} className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
                 </div>
                 <div>
                   <label htmlFor="contact-email" className="sr-only">Your Email</label>
-                  <input
-                    id="contact-email"
-                    required
-                    type="email"
-                    placeholder="Your Email *"
-                    value={form.email}
-                    onChange={set("email")}
-                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
-                  />
+                  <input id="contact-email" required type="email" placeholder="Your Email *" value={form.email} onChange={set("email")} className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
                 </div>
                 <div>
                   <label htmlFor="contact-phone" className="sr-only">Phone Number</label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    placeholder="Phone Number"
-                    value={form.phone}
-                    onChange={set("phone")}
-                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
-                  />
+                  <input id="contact-phone" type="tel" placeholder="Phone Number" value={form.phone} onChange={set("phone")} className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
                 </div>
                 <div>
                   <label htmlFor="contact-subject" className="sr-only">Subject</label>
-                  <input
-                    id="contact-subject"
-                    placeholder="Subject"
-                    value={form.subject}
-                    onChange={set("subject")}
-                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
-                  />
+                  <input id="contact-subject" placeholder="Subject" value={form.subject} onChange={set("subject")} className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
                 </div>
               </div>
               <div>
                 <label htmlFor="contact-message" className="sr-only">Your Message</label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows={5}
-                  placeholder="Tell us about your project or requirement... *"
-                  value={form.message}
-                  onChange={set("message")}
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent resize-none"
-                />
+                <textarea id="contact-message" required rows={5} placeholder="Tell us about your project or requirement... *" value={form.message} onChange={set("message")} className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent resize-none" />
               </div>
               <div className="flex items-center justify-between gap-4 flex-wrap">
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-6 py-3 rounded-2xl hover:opacity-90 transition disabled:opacity-60"
-                >
+                <button type="submit" disabled={submitting} className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-6 py-3 rounded-2xl hover:opacity-90 transition disabled:opacity-60">
                   <Send className="w-4 h-4" aria-hidden="true" />
                   {submitting ? "Sending..." : "Send Message"}
                 </button>
@@ -185,7 +160,6 @@ const ContactPage = () => {
               </div>
             </form>
           </div>
-
           <div>
             <h2 className="font-display font-bold text-2xl">Our Location</h2>
             <p className="text-sm text-muted-foreground mt-1 mb-6">We're based in Indore and work with clients worldwide.</p>

@@ -6,6 +6,7 @@ import laptop from "@/assets/laptop.png";
 import a1 from "@/assets/avatar1.jpg";
 import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
+import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 
 const values = [
   { icon: Heart, title: "Honesty First", desc: "Transparent pricing, no hidden charges, no false promises." },
@@ -21,9 +22,22 @@ const process = [
   { n: "04", t: "Growth", d: "Long-term support." },
 ];
 
+const aboutJsonLd = [
+  organizationSchema,
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+  ]),
+];
+
 const AboutPage = () => (
   <Layout>
-    <SEO title="About Websbond — India's Digital Agency for Small Businesses" description="Websbond is an Indore-based digital agency helping small businesses grow online with affordable websites, SEO and real human support." path="/about" />
+    <SEO
+      title="About Websbond — India's #1 Digital Agency for Small Businesses | Indore"
+      description="Websbond is an Indore-based website design and digital marketing agency with 5+ years experience helping 50+ small businesses grow online. Real people, honest pricing, real results."
+      path="/about"
+      jsonLd={aboutJsonLd}
+    />
     {/* Hero */}
     <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
       <div>

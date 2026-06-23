@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, CircleCheck as CheckCircle2, Users, Trophy, Rocket, Smile, Coins, Clock, TrendingUp, Monitor, ShoppingBag, Search, Megaphone, Palette, Layers, ChevronDown, Leaf } from "lucide-react";
+import { ArrowRight, Sparkles, CircleCheck as CheckCircle2, Users, Trophy, Rocket, Smile, Coins, Clock, TrendingUp, Monitor, ShoppingBag, Search, Megaphone, Palette, Layers, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { SEO } from "@/components/site/SEO";
@@ -8,6 +8,7 @@ import laptop from "@/assets/laptop.png";
 import b1 from "@/assets/blog1.jpg";
 import b2 from "@/assets/blog2.jpg";
 import b3 from "@/assets/blog3.jpg";
+import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 
 const filters = [
   { label: "All Projects", icon: Layers },
@@ -42,6 +43,26 @@ const stats = [
   { icon: TrendingUp, val: "₹20Cr+", label: "Revenue Generated", color: "bg-purple-100 text-purple-600" },
 ];
 
+const ourWorkJsonLd = [
+  organizationSchema,
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Our Work", path: "/our-work" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Websbond Client Projects Portfolio",
+    description: "Website development, SEO and digital marketing projects delivered by Websbond for businesses across India",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "TechNova SaaS Website", description: "Modern SaaS website with high-converting UI/UX" },
+      { "@type": "ListItem", position: 2, name: "UrbanWear eCommerce", description: "High performance eCommerce store with secure checkout" },
+      { "@type": "ListItem", position: 3, name: "RankBoost SEO Campaign", description: "240% organic traffic increase in 6 months" },
+      { "@type": "ListItem", position: 4, name: "FreshBites Restaurant Website", description: "Restaurant website with online ordering and table booking" },
+    ],
+  },
+];
+
 const OurWorkPage = () => {
   const [active, setActive] = useState("All Projects");
 
@@ -51,7 +72,12 @@ const OurWorkPage = () => {
 
   return (
     <Layout>
-      <SEO title="Our Work — Websbond Case Studies & Client Projects" description="See websites, SEO campaigns and digital marketing projects Websbond has delivered for small businesses across India. Real results, real clients." path="/our-work" />
+      <SEO
+        title="Our Work — Website Design & Digital Marketing Portfolio | Websbond India"
+        description="See Websbond's portfolio of website design, eCommerce, SEO and digital marketing projects for Indian small businesses. 50+ projects delivered. Real results — 240% traffic growth."
+        path="/our-work"
+        jsonLd={ourWorkJsonLd}
+      />
 
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">

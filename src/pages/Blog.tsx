@@ -10,6 +10,7 @@ import a1 from "@/assets/avatar1.jpg";
 import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
 import laptop from "@/assets/laptop.png";
+import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 
 const filters = [
   { label: "All Posts", icon: Pencil },
@@ -43,6 +44,24 @@ const recent = [
 
 const POSTS_PER_PAGE = 6;
 
+const blogJsonLd = [
+  organizationSchema,
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://websbond.com/blog",
+    name: "Websbond Digital Marketing Blog",
+    description: "Practical guides on website design, SEO, social media and digital growth for small businesses in India.",
+    url: "https://websbond.com/blog",
+    publisher: { "@id": "https://websbond.com/#organization" },
+    inLanguage: ["en-IN", "hi"],
+  },
+];
+
 const BlogPage = () => {
   const [active, setActive] = useState("All Posts");
   const [page, setPage] = useState(1);
@@ -67,7 +86,12 @@ const BlogPage = () => {
 
   return (
     <Layout>
-      <SEO title="Blog — Digital Marketing & SEO Tips for Indian Small Businesses" description="Practical guides on websites, SEO, social media and digital growth for small businesses in India — written by the Websbond team." path="/blog" />
+      <SEO
+        title="Digital Marketing & SEO Blog for Indian Small Businesses | Websbond"
+        description="Free guides on website design, SEO tips, Google Ads, social media marketing and business growth for small businesses in India. Updated weekly by the Websbond team."
+        path="/blog"
+        jsonLd={blogJsonLd}
+      />
 
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
