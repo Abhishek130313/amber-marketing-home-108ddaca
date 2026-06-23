@@ -48,8 +48,8 @@ export const Navbar = () => {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link to="/contact" className="hidden sm:inline-flex items-center gap-2 bg-accent text-accent-foreground font-semibold px-5 py-3 rounded-2xl hover:shadow-float hover:-translate-y-0.5 transition-all">
-            Free Consultation <ArrowRight className="w-4 h-4" />
+          <Link to="/contact" className="hidden sm:inline-flex items-center gap-2 bg-accent text-accent-foreground font-semibold px-5 py-3 rounded-2xl hover:shadow-float hover:-translate-y-0.5 hover:scale-[1.03] active:scale-95 transition-all duration-300 group">
+            Free Consultation <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
           <button className="lg:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X /> : <Menu />}
