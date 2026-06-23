@@ -18,17 +18,32 @@ export const Navbar = () => {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border/60">
       <div className="container flex items-center justify-between gap-4 h-16 sm:h-20 lg:h-24">
         <Logo size="md" />
-        <nav className="hidden lg:flex items-center gap-9 text-base xl:text-lg font-bold">
+        <nav className="hidden lg:flex items-center gap-1 text-base xl:text-lg font-bold">
           {links.map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
               end={l.to === "/"}
               className={({ isActive }) =>
-                `relative pb-1 transition-colors ${isActive ? "text-foreground after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-0.5 after:bg-brand after:rounded-full" : "text-muted-foreground hover:text-foreground"}`
+                `group relative px-4 py-2 rounded-xl transition-all duration-300 hover:-translate-y-0.5 ${
+                  isActive
+                    ? "text-brand bg-brand/10 shadow-[0_6px_24px_-10px_hsl(var(--brand)/0.55)]"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent/40"
+                }`
               }
             >
-              {l.label}
+              {({ isActive }) => (
+                <>
+                  <span className="relative z-10 inline-block transition-transform duration-300 group-hover:scale-[1.04]">
+                    {l.label}
+                  </span>
+                  <span
+                    className={`pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-1 h-[3px] rounded-full bg-gradient-to-r from-brand to-accent transition-all duration-300 ${
+                      isActive ? "w-7 opacity-100" : "w-0 opacity-0 group-hover:w-7 group-hover:opacity-100"
+                    }`}
+                  />
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
