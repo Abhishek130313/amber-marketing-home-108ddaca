@@ -9,6 +9,13 @@ interface SEOProps {
   jsonLd?: object | object[];
 }
 
+function safeJsonLd(obj: object): string {
+  return JSON.stringify(obj)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
+
 export const SEO = ({ title, description, path, jsonLd }: SEOProps) => {
   const url = `${SITE_URL}${path}`;
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -24,7 +31,11 @@ export const SEO = ({ title, description, path, jsonLd }: SEOProps) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {schemas.map((s, i) => (
-        <script key={i} type="application/ld+json">{JSON.stringify(s)}</script>
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(s) }}
+        />
       ))}
     </Helmet>
   );

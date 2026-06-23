@@ -1,4 +1,5 @@
-import { Sparkles, Phone, Mail, MessageCircle, MapPin, Send, Shield, Clock, Users, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { Sparkles, Phone, Mail, MessageCircle, MapPin, Send, Shield, Users, CircleCheck as CheckCircle2 } from "lucide-react";
 import { SEO } from "@/components/site/SEO";
 import { Layout } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/CtaBanner";
@@ -11,19 +12,45 @@ const contactCards = [
   { icon: MapPin, title: "Visit Us", value: "Indore, Madhya Pradesh", sub: "India - 452001", color: "bg-purple-100 text-purple-600" },
 ];
 
+type FormState = {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};
+
+const empty: FormState = { name: "", email: "", phone: "", subject: "", message: "" };
+
 const ContactPage = () => {
-  const onSubmit = (e: React.FormEvent) => {
+  const [form, setForm] = useState<FormState>(empty);
+  const [submitting, setSubmitting] = useState(false);
+
+  const set = (field: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      toast({ title: "Please fill all required fields.", variant: "destructive" });
+      return;
+    }
+    setSubmitting(true);
+    await new Promise((r) => setTimeout(r, 600));
+    setSubmitting(false);
+    setForm(empty);
     toast({ title: "Message sent!", description: "Hum jaldi hi aapse contact karenge." });
   };
+
   return (
     <Layout>
       <SEO title="Contact Websbond — Free Consultation, Call or WhatsApp" description="Get in touch with Websbond — call, WhatsApp or email our Indore team. Free consultation for websites, SEO and digital marketing in India." path="/contact" />
+
       {/* Hero */}
       <section className="container grid lg:grid-cols-2 gap-12 py-14 lg:py-20 items-center">
         <div>
           <div className="inline-flex items-center gap-2 bg-accent/15 text-foreground font-semibold text-xs uppercase tracking-wider px-4 py-2 rounded-full">
-            <Sparkles className="w-3.5 h-3.5 text-accent" /> Let's Connect
+            <Sparkles className="w-3.5 h-3.5 text-accent" aria-hidden="true" /> Let's Connect
           </div>
           <h1 className="mt-6 font-display font-extrabold text-5xl md:text-6xl leading-[1.05]">
             Let's build something<br />
@@ -39,8 +66,13 @@ const ContactPage = () => {
               { icon: Shield, t: "No Obligations", s: "100% Free Consultation" },
             ].map(({ icon: Icon, t, s }) => (
               <div key={t} className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-accent/15 text-brand grid place-items-center shrink-0"><Icon className="w-4 h-4" /></div>
-                <div><div className="font-semibold text-sm">{t}</div><div className="text-xs text-muted-foreground">{s}</div></div>
+                <div className="w-9 h-9 rounded-xl bg-accent/15 text-brand grid place-items-center shrink-0" aria-hidden="true">
+                  <Icon className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-semibold text-sm">{t}</div>
+                  <div className="text-xs text-muted-foreground">{s}</div>
+                </div>
               </div>
             ))}
           </div>
@@ -61,7 +93,9 @@ const ContactPage = () => {
       <section className="container grid md:grid-cols-2 lg:grid-cols-4 gap-5 pb-10">
         {contactCards.map(({ icon: Icon, title, value, sub, color }) => (
           <div key={title} className="bg-card rounded-3xl border border-border p-5 shadow-soft hover:shadow-card transition-all flex items-start gap-4">
-            <div className={`w-12 h-12 rounded-full grid place-items-center shrink-0 ${color}`}><Icon className="w-5 h-5" /></div>
+            <div className={`w-12 h-12 rounded-full grid place-items-center shrink-0 ${color}`} aria-hidden="true">
+              <Icon className="w-5 h-5" />
+            </div>
             <div>
               <div className="text-xs font-semibold text-muted-foreground">{title}</div>
               <div className="font-bold mt-0.5">{value}</div>
@@ -77,19 +111,77 @@ const ContactPage = () => {
           <div>
             <h2 className="font-display font-bold text-2xl">Send us a message</h2>
             <p className="text-sm text-muted-foreground mt-1 mb-6">Fill out the form and our team will get back to you soon.</p>
-            <form onSubmit={onSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-4" noValidate>
               <div className="grid sm:grid-cols-2 gap-4">
-                <input required placeholder="Your Name" className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
-                <input required type="email" placeholder="Your Email" className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
-                <input placeholder="Phone Number" className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
-                <input placeholder="Subject" className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent" />
+                <div>
+                  <label htmlFor="contact-name" className="sr-only">Your Name</label>
+                  <input
+                    id="contact-name"
+                    required
+                    placeholder="Your Name *"
+                    value={form.name}
+                    onChange={set("name")}
+                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="sr-only">Your Email</label>
+                  <input
+                    id="contact-email"
+                    required
+                    type="email"
+                    placeholder="Your Email *"
+                    value={form.email}
+                    onChange={set("email")}
+                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-phone" className="sr-only">Phone Number</label>
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={form.phone}
+                    onChange={set("phone")}
+                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-subject" className="sr-only">Subject</label>
+                  <input
+                    id="contact-subject"
+                    placeholder="Subject"
+                    value={form.subject}
+                    onChange={set("subject")}
+                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent"
+                  />
+                </div>
               </div>
-              <textarea required rows={5} placeholder="Tell us about your project or requirement..." className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent resize-none" />
+              <div>
+                <label htmlFor="contact-message" className="sr-only">Your Message</label>
+                <textarea
+                  id="contact-message"
+                  required
+                  rows={5}
+                  placeholder="Tell us about your project or requirement... *"
+                  value={form.message}
+                  onChange={set("message")}
+                  className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-accent resize-none"
+                />
+              </div>
               <div className="flex items-center justify-between gap-4 flex-wrap">
-                <button type="submit" className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-6 py-3 rounded-2xl hover:opacity-90 transition">
-                  <Send className="w-4 h-4" /> Send Message
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-6 py-3 rounded-2xl hover:opacity-90 transition disabled:opacity-60"
+                >
+                  <Send className="w-4 h-4" aria-hidden="true" />
+                  {submitting ? "Sending..." : "Send Message"}
                 </button>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground"><Shield className="w-4 h-4" /> Your information is safe with us.</div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Shield className="w-4 h-4" aria-hidden="true" /> Your information is safe with us.
+                </div>
               </div>
             </form>
           </div>
@@ -99,13 +191,16 @@ const ContactPage = () => {
             <p className="text-sm text-muted-foreground mt-1 mb-6">We're based in Indore and work with clients worldwide.</p>
             <div className="relative rounded-2xl overflow-hidden border border-border aspect-square">
               <iframe
-                title="Websbond location"
+                title="Websbond office location in Indore, India"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=75.83%2C22.70%2C75.92%2C22.75&layer=mapnik&marker=22.7196%2C75.8577"
                 className="w-full h-full"
                 loading="lazy"
               />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[hsl(214_55%_8%)] text-background rounded-2xl px-4 py-3 shadow-card">
-                <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-accent" /><span className="font-bold text-sm">Websbond</span></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[hsl(214_55%_8%)] text-background rounded-2xl px-4 py-3 shadow-card pointer-events-none">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-accent" aria-hidden="true" />
+                  <span className="font-bold text-sm">Websbond</span>
+                </div>
                 <div className="text-xs text-background/70 mt-0.5">Indore, MP, India</div>
                 <div className="text-xs text-background/70">452001</div>
               </div>

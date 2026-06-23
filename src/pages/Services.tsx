@@ -134,9 +134,9 @@ const ServicesPage = () => (
                 <li key={f} className="flex items-center gap-2 text-sm"><Check className="w-4 h-4 text-green-500" /> {f}</li>
               ))}
             </ul>
-            <button className="inline-flex items-center gap-1.5 border border-border px-4 py-2 rounded-xl text-sm font-semibold hover:bg-accent hover:text-accent-foreground hover:border-accent transition">
-              Learn more about this service <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            <Link to="/contact" className="inline-flex items-center gap-1.5 border border-border px-4 py-2 rounded-xl text-sm font-semibold hover:bg-accent hover:text-accent-foreground hover:border-accent transition">
+              Get this service <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </article>
         ))}
       </div>
