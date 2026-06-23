@@ -6,33 +6,46 @@ type LogoProps = {
   size?: "sm" | "md" | "lg";
 };
 
-const sizeMap: Record<NonNullable<LogoProps["size"]>, string> = {
-  sm: "h-9 w-9 sm:h-10 sm:w-10",
-  md: "h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 lg:h-14 lg:w-14",
-  lg: "h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20",
+const imgSizeMap: Record<NonNullable<LogoProps["size"]>, string> = {
+  sm: "h-7 w-7",
+  md: "h-9 w-9",
+  lg: "h-12 w-12",
+};
+
+const textSizeMap: Record<NonNullable<LogoProps["size"]>, string> = {
+  sm: "text-base",
+  md: "text-xl",
+  lg: "text-2xl",
 };
 
 export const Logo = ({ light = false, size = "md" }: LogoProps) => (
   <Link
     to="/"
     aria-label="Websbond home"
-    className="inline-flex items-center shrink-0"
+    className="inline-flex items-center gap-2 shrink-0"
   >
     <span
-      className={`inline-flex items-center justify-center rounded-2xl overflow-hidden ${
+      className={`inline-flex items-center justify-center rounded-xl overflow-hidden ${
         light ? "" : "ring-1 ring-border/40 shadow-sm"
       }`}
       style={{ background: "#0a0f1c" }}
     >
       <img
         src={logo3d}
-        alt="Websbond logo"
+        alt=""
         width={512}
         height={512}
         loading="eager"
         decoding="async"
-        className={`${sizeMap[size]} object-contain`}
+        className={`${imgSizeMap[size]} object-contain`}
       />
+    </span>
+    <span
+      className={`font-display font-extrabold tracking-tight ${textSizeMap[size]} ${
+        light ? "text-white" : "text-foreground"
+      }`}
+    >
+      Websbond
     </span>
   </Link>
 );
